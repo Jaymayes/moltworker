@@ -261,8 +261,9 @@ if (isOpenAI) {
     config.agents.defaults.models['anthropic/claude-haiku-4-5-20251001'] = { alias: 'Haiku 4.5' };
     config.agents.defaults.model.primary = 'anthropic/claude-opus-4-5-20251101';
 } else {
-    // Default to Anthropic without custom base URL (uses built-in pi-ai catalog)
-    config.agents.defaults.model.primary = 'anthropic/claude-opus-4-5';
+    // Default to Anthropic without custom base URL
+    // Use full model ID instead of alias for reliability
+    config.agents.defaults.model.primary = 'anthropic/claude-sonnet-4-20250514';
 }
 
 // Write updated config
