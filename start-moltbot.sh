@@ -262,8 +262,8 @@ if (isOpenAI) {
     config.agents.defaults.model.primary = 'anthropic/claude-opus-4-5-20251101';
 } else {
     // Default to Anthropic without custom base URL
-    // Use full model ID instead of alias for reliability
-    config.agents.defaults.model.primary = 'anthropic/claude-sonnet-4-20250514';
+    // Use a known working model ID
+    config.agents.defaults.model.primary = 'anthropic/claude-3-5-sonnet-20241022';
 }
 
 // Write updated config
