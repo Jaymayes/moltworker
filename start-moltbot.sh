@@ -262,7 +262,22 @@ if (isOpenAI) {
     config.agents.defaults.model.primary = 'anthropic/claude-opus-4-5-20251101';
 } else {
     // Default to Anthropic without custom base URL
-    // Use a known working model ID
+    // Configure the Anthropic provider with API key from environment
+    if (process.env.ANTHROPIC_API_KEY) {
+        console.log('Configuring Anthropic provider with API key from environment');
+        config.models = config.models || {};
+        config.models.providers = config.models.providers || {};
+        config.models.providers.anthropic = {
+            apiKey: process.env.ANTHROPIC_API_KEY,
+            api: 'anthropic-messages',
+            models: [
+                { id: 'claude-3-5-sonnet-20241022', name: 'Claude 3.5 Sonnet', contextWindow: 200000 },
+                { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', contextWindow: 200000 },
+            ]
+        };
+    } else {
+        console.log('WARNING: ANTHROPIC_API_KEY not set!');
+    }
     config.agents.defaults.model.primary = 'anthropic/claude-3-5-sonnet-20241022';
 }
 
